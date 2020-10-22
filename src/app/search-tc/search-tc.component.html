@@ -1,0 +1,68 @@
+<mat-card class="sc-card">
+    <mat-card-header>
+        <mat-card-title>Ticket Redemption</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="example-container">
+            <mat-form-field class="example-full-width">
+                <input matInput
+                       placeholder="Barcode"
+                       aria-label="Barcode"
+                       [matAutocomplete]="auto"
+                       [formControl]="ticketBarcode">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let item of filiteredbarcodeList | async" [value]="item.barcode">
+                    <span>Barcode:{{item.barcode}}</span> |
+                    <small>Amount: {{item.amount}}</small>
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="ticketBarcode.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button type="button" (click)="searchTicket()" mat-raised-button color="primary">Sumbit</button>
+      </mat-card-actions>
+</mat-card>
+
+<mat-card class="td-card" *ngIf="barcodeData && barcodeData.length > 0">
+    <mat-card-header>
+        <mat-card-title>CashOut Ticket</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="td-container">
+            <div class="row">
+            <label>Ticket Amount</label>
+            <mat-form-field appearance="fill">
+                <input matInput readonly [(value)]="barcodeData[0].amount">
+                <span matPrefix>$&nbsp;</span>
+                <span matSuffix>.00</span>
+            </mat-form-field>
+            </div>
+            <div class="row">
+            <label>State</label>
+            <mat-form-field appearance="fill">
+                <mat-select disabled [(value)]="barcodeData[0].status">
+                    <mat-option value="1">Active</mat-option>
+                    <mat-option value="0">InActive</mat-option>
+                </mat-select>
+            </mat-form-field>
+            </div>
+            <div class="row">
+            <label>Effective Date</label>
+            <mat-form-field appearance="fill">
+                <input matInput readonly [(value)]="barcodeData[0].effectiveDate">
+                <mat-icon matSuffix>date_range</mat-icon>
+            </mat-form-field>
+            </div>
+            <div class="row">
+            <label>Location</label>
+            <mat-form-field appearance="fill">
+                <input matInput readonly [(value)]="barcodeData[0].location">
+            </mat-form-field>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="td-card" *ngIf="barcodeData && barcodeData.length == 0"><h1>Ticket Coupon not Found!</h1></mat-card>

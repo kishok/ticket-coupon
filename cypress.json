@@ -1,0 +1,8 @@
+{
+    "$schema": "https://on.cypress.io/cypress.schema.json",
+    "supportFile": "cypress/support/index.js",
+    "experimentalComponentTesting": true,
+    "componentFolder": "src",
+    "testFiles": "**/*cy-spec.*",
+    "video": false
+}

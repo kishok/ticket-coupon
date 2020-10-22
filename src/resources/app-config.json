@@ -1,0 +1,5 @@
+{
+    "environment": "development",
+    "resource_sharing":"CORS",
+    "endpoints":[]        
+}
