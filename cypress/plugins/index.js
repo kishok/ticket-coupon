@@ -13,11 +13,12 @@
 // the project's config changing)
 
 const cypressTypeScriptPreprocessor = require('./cy-ts-preprocessor');
+const cypressCodeCoverageTasks = require("@cypress/code-coverage/task");
 
 /**
  * @type {Cypress.PluginConfig}
  */
 module.exports = (on, config) => {
   on('file:preprocessor', cypressTypeScriptPreprocessor);
-  return config;
+  return cypressCodeCoverageTasks(on,config);
 }

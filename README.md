@@ -11,4 +11,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Running unit tests
 
-Run `npm run cy:open` to execute the unit test of Ticketing Service.
+### Headed mode
+Run `npm run cy:unit:open` to execute the unit test of Ticketing Service.
+
+### Headless mode
+Run `npm run cy:unit:run` to execute the unit test of Ticketing Service.
